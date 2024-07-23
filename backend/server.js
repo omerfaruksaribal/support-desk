@@ -15,7 +15,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
 app.get('/', (req, res) => {
-    res.status(200).json({message: 'Support Desk API\'a hoş geldiniz.'});
+    res.status(200).json({message: 'Yardım Masası API\'ına hoş geldiniz.'});
 });
 
 
