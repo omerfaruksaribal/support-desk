@@ -70,7 +70,7 @@ const createTicket = asyncHandler(async (req, res) => {
         product,
         description,
         user: req.user.id,
-        status: 'new'
+        status: 'yeni'
     })
 
 
@@ -131,7 +131,7 @@ const updateTicket = asyncHandler(async (req, res) => {
         throw new Error('Yetkilendirilmemiş Kullanıcı.')
     }
 
-    const updatedTicket = await Ticket.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    const updatedTicket = await Ticket.findByIdAndUpdate(req.params.id, req.body, { yeni: true })
 
     res.status(200).json(updatedTicket)
 })

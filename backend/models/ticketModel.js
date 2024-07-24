@@ -22,8 +22,8 @@ const ticketSchema = new Schema({
     status: {
         type: String,
         required: true,
-        enum: ['new', 'open', 'closed'],
-        default: 'new'
+        enum: ['yeni', 'aktif', 'kapalı'],
+        default: 'yeni'
     }
 }, 
     {

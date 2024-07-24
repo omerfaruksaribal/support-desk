@@ -241,19 +241,19 @@ h3 {
   text-align: center;
 }
 
-.status-new {
+.status-yeni {
   background-color: green;
   color: #fff;
   border-radius: 10px;
 }
 
-.status-open {
+.status-açık {
   background-color: steelblue;
   color: #fff;
   border-radius: 10px;
 }
 
-.status-closed {
+.status-kapalı {
   background-color: darkred;
   color: #fff;
   border-radius: 10px;
