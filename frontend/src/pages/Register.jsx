@@ -1,9 +1,9 @@
-import React, {useState, useEffect } from 'react'
+import React, {useState } from 'react'
 import { FaUser } from 'react-icons/fa'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector, useDispatch } from 'react-redux'
-import { register, reset } from '../features/auth/authSlice';
+import { register } from '../features/auth/authSlice';
 import {useNavigate} from 'react-router-dom'
 import Spinner from '../components/Spinner'
 
@@ -20,21 +20,8 @@ function Register() {
 
     const dispatch = useDispatch()
 
-    const {user, isError, isSuccess, isLoading, message } = useSelector(state => state.auth)
+    const { isLoading } = useSelector(state => state.auth)
 
-    useEffect(() => {
-        if (isError) {
-            toast.error(message)
-        }
-
-        // Redirect when logged in
-        if (isSuccess || user) {
-            navigate('/')
-            toast.success('Başarıyla hesap oluşturuldu.')
-        }
-
-        dispatch(reset())
-    }, [isError, isSuccess, user, message, navigate, dispatch])
 
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -44,19 +31,25 @@ function Register() {
     }
     const onSubmit = (e) => {
         e.preventDefault()
-
+    
         if (password !== password2) {
-            toast.error('Girilen iki şifre de aynı olmalıdır')
+          toast.error('Passwords do not match')
         } else {
-            const userData = {
-                name,
-                email,
-                password
-            }
-
-            dispatch(register(userData))
+          const userData = {
+            name,
+            email,
+            password,
+          }
+    
+          dispatch(register(userData))
+            .unwrap()
+            .then((user) => {
+              toast.success(`Hesabınız başarıyla kaydedilmiştir - ${user.name}`)
+              navigate('/')
+            })
+            .catch(toast.error)
         }
-    }
+      }
 
     if (isLoading) {
         return <Spinner />
@@ -68,7 +61,7 @@ function Register() {
         <h1>
             <FaUser /> Kaydol
         </h1>
-        <p>Yeni Bir Hesap Oluştur</p>
+        <p>Yeni Bir Hesap Oluşturun</p>
     </section>
 
     <section className='form'>

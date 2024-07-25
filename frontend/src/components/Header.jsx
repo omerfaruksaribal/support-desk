@@ -23,11 +23,16 @@ function Header() {
         </div>
         <ul>
             {user  ? (
-                <li>
-                    <button className='btn' onClick={onLogout}>
-                        <FaSignOutAlt /> Çıkış Yap
-                    </button>
-                </li>
+                <ul>
+                    <li>
+                        <Link to='/tickets'>{user.name}</Link>
+                    </li>
+                    <li>
+                        <button className='btn' onClick={onLogout}>
+                            <FaSignOutAlt /> Çıkış Yap
+                        </button>
+                    </li>
+                </ul>
             ) : (
                 <>
                     <li>

@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState } from 'react'
 import { FaSignInAlt } from 'react-icons/fa'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { login, reset } from '../features/auth/authSlice';
+import { login } from '../features/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 
@@ -17,7 +17,7 @@ function Login() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const { user, isError, isLoading, isSuccess, message } = useSelector((state) => state.auth)
+    const { isLoading } = useSelector((state) => state.auth)
 
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -34,21 +34,13 @@ function Login() {
         }
 
         dispatch(login(userData))
+            .unwrap()
+            .then((user) => {
+                toast.success(`Tekrardan hoş geldiniz - ${user.name}`)
+                navigate('/')
+            })
+            .catch(toast.error)
     }
-
-    useEffect(() => {
-        if (isError) {
-            toast.error(message)
-        }
-
-        // Redirect 
-        if (isSuccess || user) {
-            navigate('/')
-            toast.success('Başarıyla giriş yapıldı.')
-        }
-
-        dispatch(reset())
-    }, [isError, isSuccess, user, message, navigate, dispatch])
 
     if (isLoading) {
         return <Spinner />
@@ -60,7 +52,7 @@ function Login() {
         <h1>
             <FaSignInAlt /> Giriş Yap
         </h1>
-        <p>Hesabınıza Giriş Yapın</p>
+        <p>Tekrardan Merhaba, Hesabınıza Giriş Yapın</p>
     </section>
 
     <section className='form'>

@@ -7,6 +7,7 @@ import NewTicket from './pages/NewTicket';
 import PrivateRoute from './components/PrivateRoute'
 import Tickets from './pages/Tickets';
 import Ticket from './pages/Ticket';
+import PageNotFound from './pages/PageNotFound';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
 
@@ -30,6 +31,7 @@ function App() {
           <Route path='/ticket/:ticketId' element={<PrivateRoute />}>
             <Route path='/ticket/:ticketId' element={<Ticket />} />
           </Route>
+          <Route path='*' element={<PageNotFound />}/>
         </Routes>
       </div>
     </Router>
