@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { login } from '../features/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../components/Spinner';
+import visibilityIcon from '../assets/svg/visibilityIcon.svg'
+
 
 function Login() {
     const [formData, setFormData] = useState({
@@ -13,6 +15,7 @@ function Login() {
         password: '',
     })
     const { email, password } = formData
+    const [showPassword, setShowPassword] = useState(false)
     
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -73,7 +76,7 @@ function Login() {
 
             <div className='form-group'>
                 <input
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     className='form-control'
                     id='password'
                     value={password}
@@ -81,6 +84,12 @@ function Login() {
                     onChange={onChange}
                     placeholder='Şifrenizi giriniz'
                     required
+                />
+                <img
+                    src={visibilityIcon}
+                    alt="Şifreyi Göster"
+                    className="showPassword"
+                    onClick={() => setShowPassword((prevState) => !prevState)}
                 />
             </div>
 

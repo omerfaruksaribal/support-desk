@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { register } from '../features/auth/authSlice';
 import {useNavigate} from 'react-router-dom'
 import Spinner from '../components/Spinner'
+import visibilityIcon from '../assets/svg/visibilityIcon.svg'
 
 function Register() {
     const [formData, setFormData] = useState({
@@ -15,6 +16,7 @@ function Register() {
         password2: '',
     })
     const { name, email, password, password2 } = formData
+    const [showPassword, setShowPassword] = useState(false)
 
     const navigate = useNavigate()
 
@@ -93,7 +95,7 @@ function Register() {
             </div>
             <div className='form-group'>
                 <input
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     className='form-control'
                     id='password'
                     value={password}
@@ -102,10 +104,16 @@ function Register() {
                     placeholder='Şifrenizi giriniz'
                     required
                 />
+                <img
+                    src={visibilityIcon}
+                    alt="Şifreyi Göster"
+                    className="showPassword"
+                    onClick={() => setShowPassword((prevState) => !prevState)}
+                />
             </div>
             <div className='form-group'>
                 <input
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     className='form-control'
                     id='password2'
                     value={password2}
@@ -113,6 +121,12 @@ function Register() {
                     onChange={onChange}
                     placeholder='Şifrenizi tekrar giriniz'
                     required
+                />
+                <img
+                    src={visibilityIcon}
+                    alt="Şifreyi Göster"
+                    className="showPassword"
+                    onClick={() => setShowPassword((prevState) => !prevState)}
                 />
             </div>
             <div className="form-group">

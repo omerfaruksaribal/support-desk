@@ -121,6 +121,7 @@ h3 {
 
 .form-group {
   margin-bottom: 10px;
+  position: relative;
 }
 
 .form-group input,
@@ -390,9 +391,33 @@ footer {
   }
 }
 
+.input,
+.passwordInput,
+.emailInput,
+.nameInput,
+.textarea {
+  box-shadow: rgba(0, 0, 0, 0.11);
+  border: none;
+  background: #ffffff;
+  border-radius: 3rem;
+  height: 3rem;
+  width: 100%;
+  outline: none;
+  font-family: 'Montserrat', sans-serif;
+  padding: 0 3rem;
+  font-size: 1rem;
+}
+
 @media (max-width: 600px) {
   .boxes {
     grid-template-columns: 1fr;
+  .input,
+  .passwordInput,
+  .emailInput,
+  .nameInput,
+  .textarea {
+    padding: 0 5rem;
+}
   }
 
   .form {
@@ -408,3 +433,24 @@ footer {
     font-size: 1.5rem;
   }
 }
+
+.passwordInputDiv {
+  position: relative;
+}
+
+.passwordInput {
+  margin-bottom: 2rem;
+  background: url('./assets/svg/lockIcon.svg') #ffffff 2.5% center no-repeat;
+}
+
+.showPassword {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+}
+
+
