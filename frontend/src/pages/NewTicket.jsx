@@ -73,10 +73,9 @@ function NewTicket() {
             </div>
             <div className="form-group">
               <button className="btn btn-block">Gönder</button>
-              <BackButton />
             </div>
           </form>
-
+              <BackButton />
         </section>
     </>
   )
