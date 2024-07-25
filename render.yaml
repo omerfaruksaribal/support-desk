@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: support-desk
+    env: node
+    repo: https://github.com/omerfaruksaribal/support-desk
+    branch: main
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        value: mongodb+srv://omerfaruksaribal:ujjoimy8ZRCBL3eG@omerfarukcluster.z5hjgru.mongodb.net/supportdeskdb?retryWrites=true&w=majority&appName=OmerfarukCluster
+      - key: JWT_SECRET
+        value: 123456
