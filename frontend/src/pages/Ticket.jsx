@@ -62,6 +62,7 @@ function Ticket() {
       .then(() => {
         setNoteText('')
         closeModal()
+        toast.success('Notunuz başarıyla oluşturuldu')
       })
       .catch(toast.error)
   }
