@@ -22,9 +22,9 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/new-ticket' element={<PrivateRoute><NewTicket /></PrivateRoute>} />
-          <Route path='/tickets' element={<PrivateRoute><Tickets /></PrivateRoute>} />
-          <Route path='/ticket/:ticketId' element={<PrivateRoute><Ticket /></PrivateRoute>} />
+          <Route path='/new-ticket' element={<PrivateRoute text='Destek talebi oluşturmak için önce giriş yapınız.'><NewTicket /></PrivateRoute>} />
+          <Route path='/tickets' element={<PrivateRoute text='Destek taleplerini görüntülemek için önce giriş yapınız.'><Tickets /></PrivateRoute>} />
+          <Route path='/ticket/:ticketId' element={<PrivateRoute text='Destek taleplerini görüntülemek için önce giriş yapınız.'><Ticket /></PrivateRoute>} />
           <Route path='*' element={<PageNotFound />}/>
         </Routes>
       </div>
