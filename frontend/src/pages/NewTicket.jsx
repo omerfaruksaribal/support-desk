@@ -11,7 +11,7 @@ function NewTicket() {
   const [name] = useState(user.name)
   const [email] = useState(user.email)
   const [product, setProduct] = useState('iPhone')
-  const [description, setDescription] = useState()
+  const [description, setDescription] = useState('')
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -73,7 +73,7 @@ function NewTicket() {
             </div>
             <div className="form-group">
               <button className="btn btn-block">Gönder</button>
-              <BackButton url='/'/>
+              <BackButton />
             </div>
           </form>
 

@@ -1,20 +1,14 @@
 import React from 'react'
-import { Navigate, Outlet } from 'react-router-dom'
-import {useAuthStatus} from  '../hooks/useAuthStatus'
-import Spinner from './Spinner'
+import { Navigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { useSelector } from 'react-redux'
 
-const PrivateRoute = () => {
-    const { loggedIn, loading } = useAuthStatus()
+const PrivateRoute = ({ children }) => {
+    const { user } = useSelector((state) => state.auth)
 
-    if (loading) {
-        return <Spinner />
-    }
+    if (user) return children
 
-
-
-  return loggedIn ? <Outlet />
-    : <Navigate to='/login'> {toast.error('Destek talebi oluşturmak için önce giriş yapınız.')} </Navigate>
+    return <Navigate to='/login'> {toast.error('Destek talebi oluşturmak için önce giriş yapınız.')} </Navigate>
 }
 
 export default PrivateRoute
